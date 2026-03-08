@@ -1,19 +1,10 @@
-const express = require('express');
-const path = require('path');
-const { fetchAllTenders } = require('./scraper');
-const { translateBatch } = require('./translator');
+const { fetchAllTenders } = require('../scraper');
+const { translateBatch } = require('../translator');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Cache to avoid hitting the source too often
 let cache = { tenders: [], timestamp: 0 };
-const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+const CACHE_TTL = 10 * 60 * 1000;
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Main API: fetch and translate tenders
-app.get('/api/tenders', (req, res) => {
+module.exports = function handler(req, res) {
   try {
     const now = Date.now();
     if (cache.tenders.length > 0 && now - cache.timestamp < CACHE_TTL) {
@@ -33,8 +24,4 @@ app.get('/api/tenders', (req, res) => {
     console.error('API error:', err);
     res.status(500).json({ error: 'Failed to fetch tenders. Please try again.' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Mongolia Tender Platform running at http://localhost:${PORT}`);
-});
+};

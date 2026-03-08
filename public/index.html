@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mongolian News & Tenders - English Feed</title>
+  <title>Mongolia Tender Platform - English Translation</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -17,14 +17,14 @@
     header {
       background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
       border-bottom: 1px solid #334155;
-      padding: 1.5rem 2rem;
+      padding: 1.25rem 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .header-content {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -40,44 +40,30 @@
     }
 
     .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
     }
 
     h1 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #f1f5f9;
     }
 
-    h1 span {
-      color: #60a5fa;
-    }
+    h1 span { color: #34d399; }
 
-    .filters {
-      display: flex;
-      gap: 0.5rem;
+    .subtitle {
+      font-size: 0.75rem;
+      color: #64748b;
     }
-
-    .filter-btn {
-      padding: 0.4rem 1rem;
-      border: 1px solid #475569;
-      background: transparent;
-      color: #94a3b8;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-
-    .filter-btn:hover { border-color: #60a5fa; color: #60a5fa; }
-    .filter-btn.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
 
     .controls {
       display: flex;
@@ -87,40 +73,119 @@
 
     .refresh-btn {
       padding: 0.5rem 1.2rem;
-      background: #3b82f6;
+      background: #10b981;
       border: none;
       color: white;
       border-radius: 8px;
       cursor: pointer;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: background 0.2s;
     }
 
-    .refresh-btn:hover { background: #2563eb; }
+    .refresh-btn:hover { background: #059669; }
     .refresh-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .status {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #64748b;
     }
 
     main {
-      max-width: 900px;
-      margin: 2rem auto;
+      max-width: 1200px;
+      margin: 1.5rem auto;
       padding: 0 1.5rem;
     }
 
+    /* Stats bar */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.2rem;
+    }
+
+    /* Search & filter bar */
+    .toolbar {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.55rem 1rem;
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus { border-color: #10b981; }
+    .search-input::placeholder { color: #64748b; }
+
+    .filter-select {
+      padding: 0.55rem 0.75rem;
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-select:focus { border-color: #10b981; }
+
+    .result-count {
+      font-size: 0.8rem;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    /* Loading */
     .loading {
       text-align: center;
       padding: 4rem 2rem;
     }
 
     .spinner {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border: 3px solid #334155;
-      border-top-color: #3b82f6;
+      border-top-color: #10b981;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 1rem;
@@ -128,9 +193,10 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .feed { display: flex; flex-direction: column; gap: 0.75rem; }
+    /* Tender cards */
+    .tender-list { display: flex; flex-direction: column; gap: 0.75rem; }
 
-    .article {
+    .tender-card {
       background: #1e293b;
       border: 1px solid #334155;
       border-radius: 12px;
@@ -142,67 +208,96 @@
       display: block;
     }
 
-    .article:hover {
-      border-color: #475569;
+    .tender-card:hover {
+      border-color: #10b981;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
     }
 
-    .article-header {
+    .tender-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
     }
 
-    .article-title {
+    .tender-title {
       font-size: 1rem;
       font-weight: 600;
       color: #f1f5f9;
-      line-height: 1.4;
+      line-height: 1.45;
       flex: 1;
     }
 
-    .article-badge {
-      padding: 0.2rem 0.6rem;
+    .tender-status {
+      padding: 0.2rem 0.65rem;
       border-radius: 12px;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 600;
       text-transform: uppercase;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .badge-news { background: #1e3a5f; color: #60a5fa; }
-    .badge-tender { background: #1a3a2a; color: #4ade80; }
+    .status-published { background: #1a3a2a; color: #4ade80; }
+    .status-result { background: #1e3a5f; color: #60a5fa; }
+    .status-closed { background: #3b1520; color: #fca5a5; }
+    .status-other { background: #2d2006; color: #fbbf24; }
 
-    .article-meta {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .article-source {
-      font-size: 0.8rem;
-      color: #60a5fa;
-      font-weight: 500;
-    }
-
-    .article-original {
-      font-size: 0.75rem;
+    .tender-original {
+      font-size: 0.78rem;
       color: #64748b;
       font-style: italic;
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
+    }
+
+    .tender-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.5rem 1.5rem;
+      font-size: 0.82rem;
+    }
+
+    .tender-field {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .field-label {
+      color: #64748b;
       white-space: nowrap;
     }
 
-    .article-time {
-      font-size: 0.75rem;
-      color: #475569;
+    .field-value {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .budget-value {
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    .tender-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.75rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid #334155;
+      font-size: 0.78rem;
+    }
+
+    .tender-code {
+      color: #94a3b8;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 0.72rem;
+    }
+
+    .tender-dates {
+      color: #64748b;
     }
 
     .empty-state {
@@ -223,41 +318,53 @@
       font-size: 0.9rem;
     }
 
-    .stats {
+    .source-link {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .source-link a {
+      color: #10b981;
+      text-decoration: none;
+    }
+
+    .source-link a:hover { text-decoration: underline; }
+
+    /* Pagination */
+    .pagination {
       display: flex;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
       flex-wrap: wrap;
     }
 
-    .stat {
+    .page-btn {
+      padding: 0.45rem 0.85rem;
       background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 1rem 1.5rem;
-      flex: 1;
-      min-width: 120px;
+      border: 1px solid #475569;
+      color: #94a3b8;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      transition: all 0.2s;
     }
 
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #f1f5f9;
-    }
+    .page-btn:hover { border-color: #10b981; color: #10b981; }
+    .page-btn.active { background: #10b981; border-color: #10b981; color: #fff; }
+    .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    .stat-label {
-      font-size: 0.75rem;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       header { padding: 1rem; }
       h1 { font-size: 1.1rem; }
-      .filters { flex-wrap: wrap; }
-      .article { padding: 1rem; }
-      .article-original { display: none; }
+      .tender-details { grid-template-columns: 1fr; }
+      .tender-original { display: none; }
+      .toolbar { flex-direction: column; }
+      .search-input { min-width: auto; }
     }
   </style>
 </head>
@@ -265,19 +372,15 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <div class="logo-icon">MN</div>
+        <div class="logo-icon">TN</div>
         <div>
-          <h1>Mongolia <span>News Feed</span></h1>
-          <div class="status" id="status">Loading...</div>
+          <h1>Mongolia <span>Tender Platform</span></h1>
+          <div class="subtitle">Live tenders from tender.gov.mn &middot; Translated to English</div>
         </div>
       </div>
       <div class="controls">
-        <div class="filters">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="news">News</button>
-          <button class="filter-btn" data-filter="tender">Tenders</button>
-        </div>
-        <button class="refresh-btn" id="refreshBtn" onclick="loadNews()">Refresh</button>
+        <span class="status" id="status">Loading...</span>
+        <button class="refresh-btn" id="refreshBtn" onclick="loadTenders()">Refresh</button>
       </div>
     </div>
   </header>
@@ -286,130 +389,320 @@
     <div class="stats" id="stats" style="display:none">
       <div class="stat">
         <div class="stat-value" id="totalCount">0</div>
-        <div class="stat-label">Total Items</div>
+        <div class="stat-label">Total Tenders</div>
       </div>
       <div class="stat">
-        <div class="stat-value" id="newsCount">0</div>
-        <div class="stat-label">News Articles</div>
+        <div class="stat-value" id="publishedCount">0</div>
+        <div class="stat-label">Published</div>
       </div>
       <div class="stat">
-        <div class="stat-value" id="tenderCount">0</div>
-        <div class="stat-label">Tenders</div>
+        <div class="stat-value" id="resultCount">0</div>
+        <div class="stat-label">Results Announced</div>
       </div>
       <div class="stat">
-        <div class="stat-value" id="sourceCount">0</div>
-        <div class="stat-label">Sources</div>
+        <div class="stat-value" id="budgetTotal">0</div>
+        <div class="stat-label">Total Budget (MNT)</div>
       </div>
     </div>
+
+    <div class="toolbar" id="toolbar" style="display:none">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search tenders by name, client, code...">
+      <select class="filter-select" id="statusFilter">
+        <option value="">All Statuses</option>
+      </select>
+      <select class="filter-select" id="yearFilter">
+        <option value="">All Years</option>
+      </select>
+      <select class="filter-select" id="methodFilter">
+        <option value="">All Methods</option>
+      </select>
+      <span class="result-count" id="resultCountText"></span>
+    </div>
+
     <div id="feed">
       <div class="loading">
         <div class="spinner"></div>
-        <p>Fetching Mongolian news & tenders...</p>
-        <p style="font-size:0.8rem;color:#64748b;margin-top:0.5rem">Scraping sources and translating to English</p>
+        <p>Fetching tenders from tender.gov.mn...</p>
+        <p style="font-size:0.8rem;color:#64748b;margin-top:0.5rem">Scraping live data and translating to English</p>
       </div>
+    </div>
+
+    <div class="pagination" id="pagination" style="display:none"></div>
+
+    <div class="source-link">
+      Data source: <a href="https://user.tender.gov.mn/mn/index/" target="_blank" rel="noopener">tender.gov.mn</a>
+      &middot; Tenders from 2025 to present &middot; Auto-translated to English
     </div>
   </main>
 
   <script>
-    let allItems = [];
-    let currentFilter = 'all';
+    let allTenders = [];
+    let filteredTenders = [];
+    let currentPage = 1;
+    const PAGE_SIZE = 20;
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = btn.dataset.filter;
-        renderFeed();
-      });
-    });
+    // Search and filter
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const yearFilter = document.getElementById('yearFilter');
+    const methodFilter = document.getElementById('methodFilter');
 
-    function renderFeed() {
-      const feed = document.getElementById('feed');
-      const filtered = currentFilter === 'all'
-        ? allItems
-        : allItems.filter(item => item.category === currentFilter);
+    searchInput.addEventListener('input', debounce(applyFilters, 300));
+    statusFilter.addEventListener('change', applyFilters);
+    yearFilter.addEventListener('change', applyFilters);
+    methodFilter.addEventListener('change', applyFilters);
 
-      if (filtered.length === 0) {
-        feed.innerHTML = `
-          <div class="empty-state">
-            <h3>No items found</h3>
-            <p>Try refreshing or changing the filter.</p>
-          </div>`;
-        return;
-      }
-
-      feed.innerHTML = '<div class="feed">' + filtered.map(item => `
-        <a class="article" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">
-          <div class="article-header">
-            <div class="article-title">${escapeHtml(item.title)}</div>
-            <span class="article-badge badge-${item.category}">${item.category}</span>
-          </div>
-          <div class="article-meta">
-            <span class="article-source">${escapeHtml(item.source)}</span>
-            ${item.titleOriginal && item.titleOriginal !== item.title
-              ? `<span class="article-original">${escapeHtml(item.titleOriginal)}</span>`
-              : ''}
-          </div>
-        </a>
-      `).join('') + '</div>';
+    function debounce(fn, ms) {
+      let timer;
+      return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), ms);
+      };
     }
 
-    function escapeHtml(str) {
+    function populateFilterOptions() {
+      const statuses = [...new Set(allTenders.map(t => t.statusName).filter(Boolean))];
+      const years = [...new Set(allTenders.map(t => t.tenderYear).filter(Boolean))].sort((a, b) => b - a);
+      const methods = [...new Set(allTenders.map(t => t.ruleName).filter(Boolean))];
+
+      statusFilter.innerHTML = '<option value="">All Statuses</option>' +
+        statuses.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+
+      yearFilter.innerHTML = '<option value="">All Years</option>' +
+        years.map(y => `<option value="${y}">${y}</option>`).join('');
+
+      methodFilter.innerHTML = '<option value="">All Methods</option>' +
+        methods.map(m => `<option value="${esc(m)}">${esc(m)}</option>`).join('');
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.toLowerCase().trim();
+      const status = statusFilter.value;
+      const year = yearFilter.value;
+      const method = methodFilter.value;
+
+      filteredTenders = allTenders.filter(t => {
+        if (status && t.statusName !== status) return false;
+        if (year && String(t.tenderYear) !== year) return false;
+        if (method && t.ruleName !== method) return false;
+        if (query) {
+          const searchable = [
+            t.tenderName, t.clientName, t.tenderCode,
+            t.invitationNumber, t.fundName, t.positionName,
+            t.original?.tenderName, t.original?.clientName,
+          ].filter(Boolean).join(' ').toLowerCase();
+          if (!searchable.includes(query)) return false;
+        }
+        return true;
+      });
+
+      currentPage = 1;
+      document.getElementById('resultCountText').textContent =
+        `${filteredTenders.length} of ${allTenders.length} tenders`;
+      renderTenders();
+      renderPagination();
+    }
+
+    function formatBudget(amount) {
+      if (!amount || amount === 0) return '-';
+      if (amount >= 1e9) return (amount / 1e9).toFixed(1) + 'B';
+      if (amount >= 1e6) return (amount / 1e6).toFixed(1) + 'M';
+      if (amount >= 1e3) return (amount / 1e3).toFixed(0) + 'K';
+      return amount.toLocaleString();
+    }
+
+    function formatBudgetFull(amount) {
+      if (!amount || amount === 0) return '-';
+      return amount.toLocaleString() + ' MNT';
+    }
+
+    function getStatusClass(statusName) {
+      if (!statusName) return 'status-other';
+      const s = statusName.toLowerCase();
+      if (s.includes('published') || s.includes('нийтлэгдсэн')) return 'status-published';
+      if (s.includes('result') || s.includes('үр дүн') || s.includes('дүн')) return 'status-result';
+      if (s.includes('closed') || s.includes('хаагдсан')) return 'status-closed';
+      return 'status-other';
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '-';
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      } catch {
+        return dateStr;
+      }
+    }
+
+    function esc(str) {
       if (!str) return '';
       const div = document.createElement('div');
       div.textContent = str;
       return div.innerHTML;
     }
 
-    async function loadNews() {
+    function renderTenders() {
+      const feed = document.getElementById('feed');
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const pageItems = filteredTenders.slice(start, start + PAGE_SIZE);
+
+      if (pageItems.length === 0) {
+        feed.innerHTML = `
+          <div class="empty-state">
+            <h3>No tenders found</h3>
+            <p>Try changing your search or filters.</p>
+          </div>`;
+        return;
+      }
+
+      feed.innerHTML = '<div class="tender-list">' + pageItems.map(t => `
+        <a class="tender-card" href="${esc(t.detailUrl)}" target="_blank" rel="noopener">
+          <div class="tender-top">
+            <div class="tender-title">${esc(t.tenderName)}</div>
+            <span class="tender-status ${getStatusClass(t.statusName)}">${esc(t.statusName) || 'N/A'}</span>
+          </div>
+          ${t.original && t.original.tenderName && t.original.tenderName !== t.tenderName
+            ? `<div class="tender-original">${esc(t.original.tenderName)}</div>` : ''}
+          <div class="tender-details">
+            <div class="tender-field">
+              <span class="field-label">Client:</span>
+              <span class="field-value">${esc(t.clientName) || '-'}</span>
+            </div>
+            <div class="tender-field">
+              <span class="field-label">Budget:</span>
+              <span class="field-value budget-value">${formatBudgetFull(t.totalBudget)}</span>
+            </div>
+            <div class="tender-field">
+              <span class="field-label">Method:</span>
+              <span class="field-value">${esc(t.ruleName) || '-'}</span>
+            </div>
+            <div class="tender-field">
+              <span class="field-label">Fund:</span>
+              <span class="field-value">${esc(t.fundName) || '-'}</span>
+            </div>
+          </div>
+          <div class="tender-footer">
+            <span class="tender-code">${esc(t.invitationNumber)}</span>
+            <span class="tender-dates">
+              Open: ${formatDate(t.openDate)}
+              ${t.remainDays > 0 ? ' &middot; ' + t.remainDays + ' days left' : ''}
+            </span>
+          </div>
+        </a>
+      `).join('') + '</div>';
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredTenders.length / PAGE_SIZE);
+      const pag = document.getElementById('pagination');
+
+      if (totalPages <= 1) {
+        pag.style.display = 'none';
+        return;
+      }
+
+      pag.style.display = 'flex';
+      let html = '';
+
+      html += `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>&laquo; Prev</button>`;
+
+      const range = getPageRange(currentPage, totalPages);
+      for (const p of range) {
+        if (p === '...') {
+          html += `<span style="color:#64748b">...</span>`;
+        } else {
+          html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" onclick="goPage(${p})">${p}</button>`;
+        }
+      }
+
+      html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next &raquo;</button>`;
+      pag.innerHTML = html;
+    }
+
+    function getPageRange(current, total) {
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      const pages = [];
+      pages.push(1);
+      if (current > 3) pages.push('...');
+      for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+        pages.push(i);
+      }
+      if (current < total - 2) pages.push('...');
+      pages.push(total);
+      return pages;
+    }
+
+    function goPage(p) {
+      const totalPages = Math.ceil(filteredTenders.length / PAGE_SIZE);
+      if (p < 1 || p > totalPages) return;
+      currentPage = p;
+      renderTenders();
+      renderPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function loadTenders() {
       const btn = document.getElementById('refreshBtn');
       const status = document.getElementById('status');
       btn.disabled = true;
       btn.textContent = 'Loading...';
-      status.textContent = 'Fetching news...';
+      status.textContent = 'Fetching tenders...';
 
       document.getElementById('feed').innerHTML = `
         <div class="loading">
           <div class="spinner"></div>
-          <p>Fetching Mongolian news & tenders...</p>
-          <p style="font-size:0.8rem;color:#64748b;margin-top:0.5rem">Scraping sources and translating to English</p>
+          <p>Fetching tenders from tender.gov.mn...</p>
+          <p style="font-size:0.8rem;color:#64748b;margin-top:0.5rem">Scraping live data and translating to English</p>
         </div>`;
+      document.getElementById('pagination').style.display = 'none';
 
       try {
-        const res = await fetch('/api/news');
+        const res = await fetch('/api/tenders');
         const data = await res.json();
 
         if (data.error) {
           document.getElementById('feed').innerHTML = `
-            <div class="error-banner">${escapeHtml(data.error)}</div>`;
+            <div class="error-banner">${esc(data.error)}</div>`;
           return;
         }
 
-        allItems = data.items || [];
+        allTenders = data.tenders || [];
+        filteredTenders = allTenders;
 
-        // Update stats
+        // Stats
         const stats = document.getElementById('stats');
-        stats.style.display = 'flex';
-        document.getElementById('totalCount').textContent = allItems.length;
-        document.getElementById('newsCount').textContent = allItems.filter(i => i.category === 'news').length;
-        document.getElementById('tenderCount').textContent = allItems.filter(i => i.category === 'tender').length;
-        document.getElementById('sourceCount').textContent = new Set(allItems.map(i => i.source)).size;
+        stats.style.display = 'grid';
+        document.getElementById('totalCount').textContent = allTenders.length;
+        document.getElementById('publishedCount').textContent =
+          allTenders.filter(t => getStatusClass(t.statusName) === 'status-published').length;
+        document.getElementById('resultCount').textContent =
+          allTenders.filter(t => getStatusClass(t.statusName) === 'status-result').length;
+        const totalBudget = allTenders.reduce((sum, t) => sum + (t.totalBudget || 0), 0);
+        document.getElementById('budgetTotal').textContent = formatBudget(totalBudget);
+
+        // Show toolbar
+        document.getElementById('toolbar').style.display = 'flex';
+        populateFilterOptions();
+        document.getElementById('resultCountText').textContent =
+          `${allTenders.length} tenders`;
 
         const now = new Date();
-        status.textContent = `Last updated: ${now.toLocaleTimeString()}`;
+        status.textContent = `Updated: ${now.toLocaleTimeString()}${data.cached ? ' (cached)' : ''}`;
 
-        renderFeed();
+        renderTenders();
+        renderPagination();
       } catch (err) {
         document.getElementById('feed').innerHTML = `
-          <div class="error-banner">Failed to load news: ${escapeHtml(err.message)}</div>`;
-        status.textContent = 'Error loading news';
+          <div class="error-banner">Failed to load tenders: ${esc(err.message)}</div>`;
+        status.textContent = 'Error loading tenders';
       } finally {
         btn.disabled = false;
         btn.textContent = 'Refresh';
       }
     }
 
-    loadNews();
+    loadTenders();
   </script>
 </body>
 </html>
