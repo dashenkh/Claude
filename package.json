@@ -1,7 +1,7 @@
 {
-  "name": "mongolian-news-translator",
+  "name": "mongolia-tender-platform",
   "version": "1.0.0",
-  "description": "Mongolian news and tender feed with English translation",
+  "description": "Mongolia government tender scraper and English translator platform - pulls live tenders from tender.gov.mn",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,8 +9,6 @@
     "vercel-build": "echo 'Build complete'"
   },
   "dependencies": {
-    "axios": "^1.6.0",
-    "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.2"
   }
 }
